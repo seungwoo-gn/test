@@ -19,6 +19,5 @@ export { Spacing } from "./components/Foundation/Spacing";
 export { ProgressBar } from "./components/Foundation/ProgressBar";
 export { Pagination } from "./components/Navigation/Pagination";
 export { CommonTab, TabItem } from "./components/Navigation/Tab";
-export { LineChart, LineChartArea, BarChart, } from "./components/Patterns/Chart";
 export { Table, TableBody, TableCell, TableHead, TableRow, } from "./components/Patterns/Table";
 export { slicePaginationTable } from "./components/Patterns/Table/utils";
