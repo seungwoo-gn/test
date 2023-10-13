@@ -1,33 +1,7 @@
 import * as React from 'react';
 import React__default, { forwardRef, useContext, useState, useRef, useEffect, createElement, Component, createRef, useCallback } from 'react';
-import { randomFillSync } from 'crypto';
 import * as ReactDOM from 'react-dom';
 import ReactDOM__default, { findDOMNode } from 'react-dom';
-
-const urlAlphabet =
-  'useandom-26T198340PX75pxJACKVERYMINDBUSHWOLF_GQZbfghjklqvwyzrict';
-
-const POOL_SIZE_MULTIPLIER = 128;
-let pool, poolOffset;
-let fillPool = bytes => {
-  if (!pool || pool.length < bytes) {
-    pool = Buffer.allocUnsafe(bytes * POOL_SIZE_MULTIPLIER);
-    randomFillSync(pool);
-    poolOffset = 0;
-  } else if (poolOffset + bytes > pool.length) {
-    randomFillSync(pool);
-    poolOffset = 0;
-  }
-  poolOffset += bytes;
-};
-let nanoid = (size = 21) => {
-  fillPool((size -= 0));
-  let id = '';
-  for (let i = poolOffset - size; i < poolOffset; i++) {
-    id += urlAlphabet[pool[i] & 63];
-  }
-  return id
-};
 
 var Breadcrumbs = function Breadcrumbs(_a) {
   var list = _a.list,
@@ -43,21 +17,21 @@ var Breadcrumbs = function Breadcrumbs(_a) {
   }, list.map(function (object, index) {
     if (typeof object === "string") {
       return /*#__PURE__*/React__default.createElement(React__default.Fragment, {
-        key: nanoid()
+        key: index
       }, /*#__PURE__*/React__default.createElement(Typography, {
         size: 24,
         color: object === current ? "fff" : "#B8B9BA",
-        key: nanoid()
+        key: index
       }, object), /*#__PURE__*/React__default.createElement("div", {
-        key: nanoid()
+        key: index
       }, list.length - 1 !== index && separator));
     } else {
       return /*#__PURE__*/React__default.createElement(React__default.Fragment, {
-        key: nanoid()
+        key: index
       }, /*#__PURE__*/React__default.createElement("div", {
-        key: nanoid()
+        key: index
       }, object), /*#__PURE__*/React__default.createElement("div", {
-        key: nanoid()
+        key: index
       }, list.length - 1 !== index && separator));
     }
   }));
@@ -13502,11 +13476,11 @@ var Radio = function Radio(_a) {
     column: column,
     align: "center",
     gap: gap
-  }, list.map(function (object) {
+  }, list.map(function (object, index) {
     return /*#__PURE__*/React__default.createElement(StyledLabel, {
       contentGap: contentGap,
       htmlFor: object.label,
-      key: nanoid()
+      key: index
     }, /*#__PURE__*/React__default.createElement(StyledRadio, {
       width: width,
       height: height,
@@ -14306,7 +14280,7 @@ var CommonTab = function CommonTab(_a) {
   }, tabNames === null || tabNames === void 0 ? void 0 : tabNames.map(function (object, index) {
     if (typeof object === "string") {
       return /*#__PURE__*/React__default.createElement(TextTabWrapper, {
-        key: nanoid(),
+        key: index,
         onClick: function onClick() {
           return handleChangeTab(index);
         },
@@ -14318,7 +14292,7 @@ var CommonTab = function CommonTab(_a) {
       }, object));
     } else {
       return /*#__PURE__*/React__default.createElement(TabWrapper, {
-        key: nanoid(),
+        key: index,
         onClick: function onClick() {
           return handleChangeTab(index);
         }
